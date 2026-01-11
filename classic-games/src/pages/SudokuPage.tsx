@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import GameHeader from '../components/common/GameHeader'
 import { createSudoku, setCell, selectCell, toggleNote, SudokuState, Difficulty } from '../domain/game/sudoku/Sudoku'
 import { useGameTimer } from '../hooks/useGameTimer'
@@ -23,7 +23,7 @@ export default function SudokuPage() {
     setState(prev => selectCell(prev, row, col))
   }
 
-  const handleNumberInput = (num: number) => {
+  const handleNumberInput = useCallback((num: number) => {
     if (!state.selectedCell) return
     const [row, col] = state.selectedCell
 
@@ -32,13 +32,13 @@ export default function SudokuPage() {
     } else {
       setState(prev => setCell(prev, row, col, num))
     }
-  }
+  }, [state.selectedCell, noteMode])
 
-  const handleClear = () => {
+  const handleClear = useCallback(() => {
     if (!state.selectedCell) return
     const [row, col] = state.selectedCell
     setState(prev => setCell(prev, row, col, null))
-  }
+  }, [state.selectedCell])
 
   const handleNewGame = (newDifficulty: Difficulty = difficulty) => {
     setState(createSudoku(newDifficulty))
@@ -57,7 +57,7 @@ export default function SudokuPage() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [state.selectedCell, noteMode])
+  }, [handleClear, handleNumberInput])
 
   const isError = (row: number, col: number) =>
     state.errors.some(([r, c]) => r === row && c === col)
