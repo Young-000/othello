@@ -1,0 +1,24 @@
+# 환경 변수 및 민감 정보
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+credentials.json
+
+# Node.js
+node_modules/
+
+# 빌드
+dist/
+build/
+
+# OS
+.DS_Store
+
+# 캐시
+.vercel/
+.cache/
+
+# 로그
+*.log

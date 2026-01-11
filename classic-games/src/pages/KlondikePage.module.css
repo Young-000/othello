@@ -1,0 +1,94 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.game {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stockWaste {
+  display: flex;
+  gap: 12px;
+}
+
+.foundations {
+  display: flex;
+  gap: 12px;
+}
+
+.pile {
+  cursor: pointer;
+}
+
+.tableau {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.column {
+  position: relative;
+  min-height: 300px;
+  width: 70px;
+}
+
+.stackedCard {
+  position: absolute;
+  left: 0;
+}
+
+.winOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.winModal {
+  background: var(--bg-secondary);
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.winModal h2 {
+  font-size: 28px;
+  margin-bottom: 16px;
+  color: var(--success);
+}
+
+.winModal p {
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+
+.winModal button {
+  margin-top: 24px;
+  background: var(--primary);
+  color: white;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.winModal button:hover {
+  background: var(--primary-dark);
+}

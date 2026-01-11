@@ -1,0 +1,328 @@
+.container {
+  min-height: 100vh;
+  padding: 24px;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+  font-size: 18px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.backButton {
+  font-size: 24px;
+  background: var(--bg-secondary);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.backButton:hover {
+  background: var(--bg-card);
+}
+
+.titleArea {
+  flex: 1;
+  text-align: center;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ffd700, #ff6b6b, #4ecdc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+.main {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.section {
+  margin-bottom: 48px;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* Medal Table */
+.medalTable {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 60px 1fr 60px 60px 60px 120px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 60px 1fr 60px 60px 60px 120px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--border-color);
+  transition: background 0.2s;
+}
+
+.tableRow:hover {
+  background: var(--bg-card);
+}
+
+.tableRow.topThree {
+  background: rgba(255, 215, 0, 0.05);
+}
+
+.rankCol {
+  font-weight: 600;
+}
+
+.nameCol {
+  font-weight: 500;
+}
+
+.medalCol {
+  text-align: center;
+  font-weight: 500;
+}
+
+.totalCol {
+  text-align: right;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Empty State */
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+}
+
+.empty p {
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.playButton {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 32px;
+  background: var(--primary);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.playButton:hover {
+  transform: translateY(-2px);
+  background: var(--primary-hover);
+}
+
+/* Game Buttons */
+.gameButtons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.gameButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 12px;
+  background: var(--bg-secondary);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.gameButton:hover {
+  background: var(--bg-card);
+  transform: translateY(-2px);
+}
+
+.gameButton.active {
+  border-color: var(--primary);
+  background: var(--bg-card);
+}
+
+.gameIcon {
+  font-size: 28px;
+}
+
+.gameName {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Game Results */
+.gameResults {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 20px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gameTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.noResults {
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 20px;
+}
+
+.resultsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.resultRow {
+  display: grid;
+  grid-template-columns: 50px 1fr 100px 80px;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--bg-primary);
+  border-radius: 8px;
+}
+
+.resultRank {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.resultName {
+  font-weight: 500;
+}
+
+.resultScore {
+  text-align: right;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.resultTime {
+  text-align: right;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* Statistics Grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.statCard {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.statValue {
+  display: block;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.statLabel {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tableHeader,
+  .tableRow {
+    grid-template-columns: 50px 1fr 45px 45px 45px 90px;
+    font-size: 13px;
+    padding: 12px 14px;
+  }
+
+  .resultRow {
+    grid-template-columns: 40px 1fr 80px 60px;
+    font-size: 14px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .gameButtons {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .gameButton {
+    padding: 12px 8px;
+  }
+
+  .gameIcon {
+    font-size: 24px;
+  }
+
+  .gameName {
+    font-size: 11px;
+  }
+}
