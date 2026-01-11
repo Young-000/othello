@@ -181,7 +181,7 @@ export async function saveToGlobalRanking(
   if (!supabase) return false
 
   try {
-    const { error } = await supabase.from('game_rankings').insert({
+    const { error } = await supabase.from('rankings').insert({
       game_id: gameId,
       player_name: entry.playerName,
       score: entry.score,
@@ -215,7 +215,7 @@ export async function getGlobalRankings(
 
   try {
     const { data, error } = await supabase
-      .from('game_rankings')
+      .from('rankings')
       .select('*')
       .eq('game_id', gameId)
       .order('score', { ascending: false })
@@ -245,7 +245,7 @@ export async function getAllGlobalRankings(
 
   try {
     const { data, error } = await supabase
-      .from('game_rankings')
+      .from('rankings')
       .select('*')
       .order('score', { ascending: false })
       .limit(limit)
