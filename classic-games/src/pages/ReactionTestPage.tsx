@@ -41,6 +41,10 @@ export default function ReactionTestPage() {
       case 'waiting':
       case 'result':
       case 'too-early':
+        // Clear any existing timeout before starting new round
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current)
+        }
         // Start new round
         setState(prev => startRound(prev))
         timeoutRef.current = setTimeout(() => {

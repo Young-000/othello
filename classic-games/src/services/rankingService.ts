@@ -20,7 +20,7 @@ export interface GlobalRankingEntry {
   player_name: string
   score: number
   moves: number | null
-  time_seconds: number | null
+  time: number | null
   difficulty: string | null
   created_at: string
 }
@@ -29,7 +29,7 @@ const STORAGE_KEY = 'classic-games-rankings'
 const MAX_ENTRIES_PER_GAME = 10
 
 function generateId(): string {
-  return Date.now().toString(36) + Math.random().toString(36).substr(2)
+  return Date.now().toString(36) + Math.random().toString(36).substring(2)
 }
 
 export function getRankings(): GameRankings {
@@ -156,6 +156,13 @@ export function calculateScore(
       const timeBonus = Math.max(0, 120 - timeInSeconds)
       return Math.max(0, baseScore - movePenalty + timeBonus)
     }
+    // Mini-games: score is calculated in their domain logic, passed via extra.gameScore
+    case 'button-masher':
+    case 'timer-challenge':
+    case 'reaction-test': {
+      // Mini-games pass their pre-calculated score via moves parameter
+      return moves
+    }
     default:
       return 0
   }
@@ -186,7 +193,7 @@ export async function saveToGlobalRanking(
       player_name: entry.playerName,
       score: entry.score,
       moves: entry.moves || null,
-      time_seconds: entry.time || null,
+      time: entry.time || null,
       difficulty: entry.difficulty || null,
     })
 

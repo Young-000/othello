@@ -78,9 +78,11 @@ describe('ButtonMasher', () => {
 
   describe('resetGame', () => {
     it('resets to initial state', () => {
-      let state = startGame(createButtonMasher())
-      state = click(state)
-      state = click(state)
+      // Simulate a game in progress (setup for reset test)
+      const started = startGame(createButtonMasher())
+      click(started)
+      click(started)
+      // resetGame always returns fresh initial state
       const reset = resetGame()
       expect(reset.clicks).toBe(0)
       expect(reset.isRunning).toBe(false)

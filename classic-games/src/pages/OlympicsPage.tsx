@@ -203,7 +203,7 @@ export default function OlympicsPage() {
                           <span className={styles.resultName}>{entry.player_name}</span>
                           <span className={styles.resultScore}>{entry.score.toLocaleString()}점</span>
                           <span className={styles.resultTime}>
-                            {entry.time_seconds ? formatTime(entry.time_seconds) : '-'}
+                            {entry.time ? formatTime(entry.time) : '-'}
                           </span>
                         </div>
                       ))}

@@ -9,7 +9,6 @@ import {
   calculateScore,
   formatTime,
   getDifferenceText,
-  DEFAULT_TARGET,
   TimerChallengeState
 } from '../domain/game/minigames/TimerChallenge'
 import { useBestScore } from '../hooks/useBestScore'

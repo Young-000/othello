@@ -9,8 +9,8 @@
 | 영역 | 상태 | 배포 URL |
 |------|:----:|----------|
 | **Frontend** | ✅ | [classic-games-kappa.vercel.app](https://classic-games-kappa.vercel.app) |
-| **Backend** | ❌ | Supabase 직접 연결 |
-| **DB 연결** | 🔧 | 스키마 미생성 |
+| **Backend** | ✅ | Supabase 직접 연결 |
+| **DB 연결** | ✅ | `classic_games.rankings` 테이블 생성 완료 |
 | **배포** | ✅ | Vercel |
 
 <details>
@@ -26,9 +26,9 @@
 
 ### DB 연결
 - [x] Project 1 선택
-- [ ] `classic_games` 스키마 생성
-- [ ] 테이블 생성
-- [ ] 클라이언트 `.schema()` 적용
+- [x] `classic_games` 스키마 생성
+- [x] `rankings` 테이블 생성 (RLS 활성화)
+- [x] 클라이언트 `.schema()` 적용
 
 ### 배포
 - [x] Vercel 연결
@@ -89,12 +89,17 @@ VITE_SUPABASE_ANON_KEY=eyJ...
 ## 테이블 구조
 
 ```sql
--- 모든 테이블은 classic_games 스키마에 생성
-CREATE TABLE classic_games.players (...);
-CREATE TABLE classic_games.games (...);
-CREATE TABLE classic_games.moves (...);
-CREATE TABLE classic_games.rankings (...);
--- 등
+-- classic_games.rankings (RLS 활성화)
+CREATE TABLE classic_games.rankings (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  game_id TEXT NOT NULL,
+  player_name TEXT NOT NULL,
+  score INTEGER NOT NULL,
+  moves INTEGER NOT NULL,
+  time INTEGER NOT NULL,
+  difficulty TEXT,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
 ```
 
 ---
