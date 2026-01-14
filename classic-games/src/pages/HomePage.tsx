@@ -7,10 +7,36 @@ interface GameInfo {
   description: string
   icon: string
   path: string
-  category: 'card' | 'puzzle'
+  category: 'card' | 'puzzle' | 'mini'
 }
 
 const GAMES: GameInfo[] = [
+  // Mini Games (Quick Play)
+  {
+    id: 'button-masher',
+    name: '버튼 연타',
+    description: '10초 동안 최대한 많이 클릭!',
+    icon: '👆',
+    path: '/button-masher',
+    category: 'mini',
+  },
+  {
+    id: 'timer-challenge',
+    name: '5초 맞추기',
+    description: '정확히 5초에 멈춰라!',
+    icon: '⏱️',
+    path: '/timer-challenge',
+    category: 'mini',
+  },
+  {
+    id: 'reaction-test',
+    name: '반응속도',
+    description: '초록색이 되면 클릭!',
+    icon: '⚡',
+    path: '/reaction-test',
+    category: 'mini',
+  },
+  // Card Games
   {
     id: 'klondike',
     name: '클론다이크',
@@ -78,6 +104,7 @@ const GAMES: GameInfo[] = [
 ]
 
 export default function HomePage() {
+  const miniGames = GAMES.filter(g => g.category === 'mini')
   const cardGames = GAMES.filter(g => g.category === 'card')
   const puzzleGames = GAMES.filter(g => g.category === 'puzzle')
 
@@ -92,6 +119,19 @@ export default function HomePage() {
       </header>
 
       <main className={styles.main}>
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>🎮 미니 게임</h2>
+          <div className={styles.grid}>
+            {miniGames.map(game => (
+              <Link key={game.id} to={game.path} className={`${styles.gameCard} ${styles.miniCard}`}>
+                <span className={styles.icon}>{game.icon}</span>
+                <h3 className={styles.gameName}>{game.name}</h3>
+                <p className={styles.gameDesc}>{game.description}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>퍼즐 게임</h2>
           <div className={styles.grid}>

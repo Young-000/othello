@@ -11,6 +11,8 @@ interface WinModalProps {
   timeInSeconds: number
   onPlayAgain: () => void
   extra?: { difficulty?: string; completedSuits?: number; removedCards?: number; gameScore?: number }
+  customTitle?: string
+  customMessage?: string
 }
 
 export default function WinModal({
@@ -20,6 +22,8 @@ export default function WinModal({
   timeInSeconds,
   onPlayAgain,
   extra,
+  customTitle,
+  customMessage,
 }: WinModalProps) {
   const [playerName, setPlayerName] = useState(() => {
     try {
@@ -76,8 +80,8 @@ export default function WinModal({
     <div className={styles.overlay}>
       <div className={styles.modal}>
         <div className={styles.confetti}>🎉</div>
-        <h2 className={styles.title}>축하합니다!</h2>
-        <p className={styles.subtitle}>게임 클리어!</p>
+        <h2 className={styles.title}>{customTitle || '축하합니다!'}</h2>
+        <p className={styles.subtitle}>{customMessage || '게임 클리어!'}</p>
 
         <div className={styles.stats}>
           <div className={styles.statRow}>

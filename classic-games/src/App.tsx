@@ -11,6 +11,9 @@ import SudokuPage from './pages/SudokuPage'
 import MinesweeperPage from './pages/MinesweeperPage'
 import MemoryPage from './pages/MemoryPage'
 import OlympicsPage from './pages/OlympicsPage'
+import ButtonMasherPage from './pages/ButtonMasherPage'
+import TimerChallengePage from './pages/TimerChallengePage'
+import ReactionTestPage from './pages/ReactionTestPage'
 
 const GameWrapper = memo(function GameWrapper({ children }: { children: ReactNode }) {
   return <ErrorBoundary>{children}</ErrorBoundary>
@@ -29,6 +32,9 @@ export default function App() {
       <Route path="/sudoku" element={<GameWrapper><SudokuPage /></GameWrapper>} />
       <Route path="/minesweeper" element={<GameWrapper><MinesweeperPage /></GameWrapper>} />
       <Route path="/memory" element={<GameWrapper><MemoryPage /></GameWrapper>} />
+      <Route path="/button-masher" element={<GameWrapper><ButtonMasherPage /></GameWrapper>} />
+      <Route path="/timer-challenge" element={<GameWrapper><TimerChallengePage /></GameWrapper>} />
+      <Route path="/reaction-test" element={<GameWrapper><ReactionTestPage /></GameWrapper>} />
     </Routes>
   )
 }
