@@ -142,11 +142,11 @@ export function moveTableauToFoundation(
 
   if (!canMoveToFoundation(card, foundation)) return state
 
-  const newColumn = column.slice(0, -1)
-  // Flip the new top card if it's face down
-  if (newColumn.length > 0 && !newColumn[newColumn.length - 1].faceUp) {
-    newColumn[newColumn.length - 1] = flipCard(newColumn[newColumn.length - 1])
-  }
+  // Create new column and flip top card if face down (immutable pattern)
+  const slicedColumn = column.slice(0, -1)
+  const newColumn = slicedColumn.length > 0 && !slicedColumn[slicedColumn.length - 1].faceUp
+    ? [...slicedColumn.slice(0, -1), flipCard(slicedColumn[slicedColumn.length - 1])]
+    : slicedColumn
 
   const newTableau = state.tableau.map((col, i) =>
     i === columnIndex ? newColumn : col
@@ -183,11 +183,11 @@ export function moveTableauToTableau(
   // Check if all moving cards are face up
   if (!movingCards.every(c => c.faceUp)) return state
 
-  const newSourceColumn = sourceColumn.slice(0, -cardCount)
-  // Flip the new top card if it's face down
-  if (newSourceColumn.length > 0 && !newSourceColumn[newSourceColumn.length - 1].faceUp) {
-    newSourceColumn[newSourceColumn.length - 1] = flipCard(newSourceColumn[newSourceColumn.length - 1])
-  }
+  // Create new source column and flip top card if face down (immutable pattern)
+  const slicedSource = sourceColumn.slice(0, -cardCount)
+  const newSourceColumn = slicedSource.length > 0 && !slicedSource[slicedSource.length - 1].faceUp
+    ? [...slicedSource.slice(0, -1), flipCard(slicedSource[slicedSource.length - 1])]
+    : slicedSource
 
   const newTableau = state.tableau.map((col, i) => {
     if (i === fromColumn) return newSourceColumn

@@ -1,0 +1,217 @@
+.container {
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(255, 215, 0, 0.1) 100%);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.15);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.calendarIcon {
+  font-size: 24px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.completedBadge {
+  font-size: 18px;
+  margin-left: 4px;
+}
+
+.streak {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 107, 0, 0.15);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.fireIcon {
+  font-size: 16px;
+}
+
+.streakCount {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ff6b00;
+}
+
+.streakLabel {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.challengeInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.gameInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gameIcon {
+  font-size: 40px;
+  background: var(--bg-primary);
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.gameDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.gameName {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.targetScore {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.resultInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.resultLabel {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.resultScore {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.resultScore.success {
+  color: #4ecdc4;
+}
+
+.resultScore.pending {
+  color: var(--text-primary);
+}
+
+.playButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+  color: #1a1a2e;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+
+.playButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+
+.playButton.playAgain {
+  background: linear-gradient(135deg, #4ecdc4 0%, #45b7aa 100%);
+}
+
+.arrow {
+  font-size: 18px;
+  transition: transform 0.2s;
+}
+
+.playButton:hover .arrow {
+  transform: translateX(4px);
+}
+
+.statsRow {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.trophyIcon,
+.checkIcon {
+  font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .challengeInfo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .resultInfo {
+    align-items: flex-start;
+    width: 100%;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border-color);
+  }
+
+  .statsRow {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+}

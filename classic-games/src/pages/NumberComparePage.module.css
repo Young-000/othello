@@ -1,0 +1,174 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.game {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 24px;
+}
+
+.stats {
+  display: flex;
+  gap: 48px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.statLabel {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.statValue {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.progressBar {
+  width: 280px;
+  height: 8px;
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff9800, #f57c00);
+  transition: width 0.1s linear;
+}
+
+.startButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 48px;
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 24px rgba(255, 152, 0, 0.4);
+}
+
+.startButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 32px rgba(255, 152, 0, 0.5);
+}
+
+.startIcon {
+  font-size: 48px;
+}
+
+.startText {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.startHint {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.compareArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.question {
+  font-size: 20px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.numbers {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.numberButton {
+  width: 120px;
+  height: 120px;
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #607d8b, #455a64);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 6px 20px rgba(96, 125, 139, 0.4);
+  animation: appear 0.15s ease-out;
+}
+
+@keyframes appear {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.numberButton:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  box-shadow: 0 8px 28px rgba(255, 152, 0, 0.5);
+}
+
+.numberButton:active {
+  transform: scale(0.98);
+}
+
+.vs {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.resultScore {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.resultRating {
+  font-size: 24px;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.resultDetails {
+  display: flex;
+  gap: 24px;
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.bestScore {
+  font-weight: 600;
+  color: var(--primary);
+}

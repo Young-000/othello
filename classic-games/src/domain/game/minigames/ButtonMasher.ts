@@ -1,4 +1,4 @@
-// Button Masher - Click as many times as possible in 10 seconds
+// Button Masher - Click as many times as possible in 5 seconds
 
 export interface ButtonMasherState {
   clicks: number
@@ -8,7 +8,7 @@ export interface ButtonMasherState {
   startTime: number | null
 }
 
-export const GAME_DURATION = 10 // seconds
+export const GAME_DURATION = 5 // seconds
 
 export function createButtonMasher(): ButtonMasherState {
   return {
@@ -66,7 +66,8 @@ export function resetGame(): ButtonMasherState {
 
 export function calculateScore(clicks: number): number {
   // Score based on clicks per second average
-  return clicks * 10
+  // Multiplier increased from 10 to 20 to compensate for shorter duration (5s vs 10s)
+  return clicks * 20
 }
 
 export function getClicksPerSecond(clicks: number): string {

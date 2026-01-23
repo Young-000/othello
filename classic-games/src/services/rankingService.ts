@@ -1,4 +1,5 @@
 import { getSupabase, isSupabaseConfigured } from '../infrastructure/supabase/client'
+import { sanitizePlayerName, RANKING_CONSTRAINTS } from '../domain/ranking/types'
 
 export interface RankingEntry {
   id: string
@@ -50,11 +51,20 @@ export function saveRanking(
   gameId: string,
   entry: Omit<RankingEntry, 'id' | 'date'>
 ): RankingEntry {
+  // Input validation
+  if (!entry.playerName || entry.playerName.trim().length === 0) {
+    throw new Error('Player name is required')
+  }
+  if (entry.score < RANKING_CONSTRAINTS.MIN_SCORE || entry.score > RANKING_CONSTRAINTS.MAX_SCORE) {
+    throw new Error('Invalid score')
+  }
+
   const rankings = getRankings()
   const gameRankings = rankings[gameId] || []
 
   const newEntry: RankingEntry = {
     ...entry,
+    playerName: sanitizePlayerName(entry.playerName), // XSS prevention
     id: generateId(),
     date: new Date().toISOString(),
   }
@@ -188,9 +198,16 @@ export async function saveToGlobalRanking(
   if (!supabase) return false
 
   try {
+    // Input validation and XSS prevention
+    const sanitizedName = sanitizePlayerName(entry.playerName)
+    if (!sanitizedName) {
+      console.error('Invalid player name')
+      return false
+    }
+
     const { error } = await supabase.from('rankings').insert({
       game_id: gameId,
-      player_name: entry.playerName,
+      player_name: sanitizedName,
       score: entry.score,
       moves: entry.moves || null,
       time: entry.time || null,

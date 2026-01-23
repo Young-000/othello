@@ -92,8 +92,9 @@ describe('ButtonMasher', () => {
 
   describe('calculateScore', () => {
     it('returns clicks times multiplier', () => {
+      // Multiplier is 20 (increased from 10 to compensate for 5s duration)
       const score = calculateScore(100)
-      expect(score).toBe(1000)
+      expect(score).toBe(2000)
     })
 
     it('returns 0 for 0 clicks', () => {
@@ -103,8 +104,10 @@ describe('ButtonMasher', () => {
 
   describe('getClicksPerSecond', () => {
     it('calculates clicks per second', () => {
-      expect(getClicksPerSecond(100)).toBe('10.0')
-      expect(getClicksPerSecond(50)).toBe('5.0')
+      // With 5 second duration: 100 clicks / 5 seconds = 20.0 clicks/sec
+      expect(getClicksPerSecond(100)).toBe('20.0')
+      // With 5 second duration: 50 clicks / 5 seconds = 10.0 clicks/sec
+      expect(getClicksPerSecond(50)).toBe('10.0')
     })
   })
 })

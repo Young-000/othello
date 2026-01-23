@@ -20,59 +20,8 @@
 }
 
 .main {
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
-}
-
-.section {
-  margin-bottom: 40px;
-}
-
-.sectionTitle {
-  font-size: 14px;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-bottom: 16px;
-  letter-spacing: 1px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 16px;
-}
-
-.gameCard {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-  box-shadow: var(--shadow);
-}
-
-.gameCard:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--primary);
-}
-
-.icon {
-  font-size: 40px;
-  display: block;
-  margin-bottom: 12px;
-}
-
-.gameName {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.gameDesc {
-  font-size: 13px;
-  color: var(--text-secondary);
 }
 
 .olympicsButton {
@@ -92,4 +41,146 @@
 .olympicsButton:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+}
+
+/* Hub Cards Grid */
+.hubGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 32px;
+}
+
+@media (max-width: 500px) {
+  .hubGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Hub Card */
+.hubCard {
+  position: relative;
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  min-height: 200px;
+}
+
+.hubCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.hubCard:first-child {
+  border-color: #FFD93D;
+}
+
+.hubCard:first-child:hover {
+  border-color: #FF6B35;
+  box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
+}
+
+.hubCard:last-child {
+  border-color: #6C5CE7;
+}
+
+.hubCard:last-child:hover {
+  border-color: #3182F6;
+  box-shadow: 0 20px 40px rgba(49, 130, 246, 0.2);
+}
+
+.hubCardInner {
+  position: relative;
+  z-index: 1;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hubIconWrapper {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.hubCard:first-child .hubIconWrapper {
+  background: linear-gradient(135deg, #FFD93D 0%, #FF6B35 100%);
+}
+
+.hubCard:last-child .hubIconWrapper {
+  background: linear-gradient(135deg, #6C5CE7 0%, #3182F6 100%);
+}
+
+.hubIcon {
+  font-size: 36px;
+}
+
+.hubTitle {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.hubDesc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.hubMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gameCount {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  background: var(--bg-secondary);
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+.hubArrow {
+  font-size: 18px;
+  color: var(--text-tertiary);
+  transition: transform 0.2s ease;
+}
+
+.hubCard:hover .hubArrow {
+  transform: translateX(4px);
+  color: var(--primary);
+}
+
+/* Glow effect on hover */
+.hubGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.hubCard:first-child .hubGlow {
+  background: linear-gradient(135deg, rgba(255, 217, 61, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+}
+
+.hubCard:last-child .hubGlow {
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(49, 130, 246, 0.1) 100%);
+}
+
+.hubCard:hover .hubGlow {
+  opacity: 1;
 }

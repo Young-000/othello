@@ -28,6 +28,7 @@ export interface IRankingRepository {
 export const RANKING_CONSTRAINTS = {
   MAX_PLAYER_NAME_LENGTH: 50,
   MIN_PLAYER_NAME_LENGTH: 1,
+  MIN_SCORE: 0,
   MAX_SCORE: 1_000_000_000,
   MAX_MOVES: 1_000_000,
   MAX_TIME: 86_400_000, // 24 hours in ms

@@ -330,6 +330,294 @@ export const gameHelpData: Record<string, BilingualGameHelp> = {
       scoring: '점수는 이동 횟수와 시간에 기반합니다. 적은 이동 = 높은 점수.',
     },
   },
+  'arrow-keys': {
+    en: {
+      title: 'Arrow Keys',
+      objective: 'Press the correct arrow key as quickly as possible within 5 seconds.',
+      rules: [
+        'An arrow pointing in a direction will appear on screen',
+        'Press the corresponding arrow key on your keyboard',
+        'Get as many correct as possible within 5 seconds',
+        'Wrong key presses count against your accuracy',
+      ],
+      tips: [
+        'Keep your fingers positioned on all four arrow keys',
+        'Focus on the center of the screen',
+        'React quickly but accurately - wrong presses hurt your score',
+        'Speed bonus rewards faster responses',
+      ],
+      scoring: 'Score = correct presses x speed bonus. Faster responses earn up to 2x multiplier.',
+    },
+    ko: {
+      title: '방향 반응',
+      objective: '5초 동안 올바른 방향키를 최대한 빠르게 누르세요.',
+      rules: [
+        '화면에 방향을 가리키는 화살표가 나타납니다',
+        '해당하는 키보드 방향키를 누르세요',
+        '5초 안에 최대한 많이 정답을 맞추세요',
+        '잘못된 키 입력은 정확도에 영향을 줍니다',
+      ],
+      tips: [
+        '네 개의 방향키에 손가락을 미리 위치시키세요',
+        '화면 중앙에 집중하세요',
+        '빠르지만 정확하게 - 틀리면 점수가 깎입니다',
+        '빠른 반응에는 속도 보너스가 있습니다',
+      ],
+      scoring: '점수 = 정답 수 x 속도 보너스. 빠른 반응은 최대 2배 보너스.',
+    },
+  },
+  'odd-even': {
+    en: {
+      title: 'Odd or Even',
+      objective: 'Determine if the number is odd or even as quickly as possible.',
+      rules: [
+        'A number will appear on screen',
+        'Click "Odd" or "Even" button based on the number',
+        'Get as many correct as possible within 5 seconds',
+        'Wrong answers count against your accuracy',
+      ],
+      tips: [
+        'Remember: odd numbers end in 1, 3, 5, 7, 9',
+        'Even numbers end in 0, 2, 4, 6, 8',
+        'Focus on the last digit for quick recognition',
+        'Stay calm and trust your instincts',
+      ],
+      scoring: 'Score = correct answers x speed bonus. Faster responses earn up to 2x multiplier.',
+    },
+    ko: {
+      title: '홀짝 판단',
+      objective: '숫자가 홀수인지 짝수인지 최대한 빠르게 판단하세요.',
+      rules: [
+        '화면에 숫자가 나타납니다',
+        '숫자에 따라 "홀수" 또는 "짝수" 버튼을 클릭하세요',
+        '5초 안에 최대한 많이 정답을 맞추세요',
+        '오답은 정확도에 영향을 줍니다',
+      ],
+      tips: [
+        '기억하세요: 홀수는 1, 3, 5, 7, 9로 끝납니다',
+        '짝수는 0, 2, 4, 6, 8로 끝납니다',
+        '빠른 인식을 위해 마지막 숫자에 집중하세요',
+        '침착하게 직감을 믿으세요',
+      ],
+      scoring: '점수 = 정답 수 x 속도 보너스. 빠른 반응은 최대 2배 보너스.',
+    },
+  },
+  'number-compare': {
+    en: {
+      title: 'Number Compare',
+      objective: 'Click the larger number as quickly as possible.',
+      rules: [
+        'Two numbers will appear side by side',
+        'Click the larger number',
+        'Get as many correct as possible within 5 seconds',
+        'Wrong choices count against your accuracy',
+      ],
+      tips: [
+        'Compare the digits from left to right',
+        'Trust your first instinct',
+        'The numbers are always different by at least 3',
+        'Speed matters, but accuracy is important too',
+      ],
+      scoring: 'Score = correct choices x speed bonus. Faster responses earn up to 2x multiplier.',
+    },
+    ko: {
+      title: '크기 비교',
+      objective: '더 큰 숫자를 최대한 빠르게 클릭하세요.',
+      rules: [
+        '두 숫자가 나란히 나타납니다',
+        '더 큰 숫자를 클릭하세요',
+        '5초 안에 최대한 많이 정답을 맞추세요',
+        '오답은 정확도에 영향을 줍니다',
+      ],
+      tips: [
+        '왼쪽에서 오른쪽으로 자릿수를 비교하세요',
+        '첫 직감을 믿으세요',
+        '숫자는 항상 최소 3 이상 차이납니다',
+        '속도도 중요하지만 정확도도 중요합니다',
+      ],
+      scoring: '점수 = 정답 수 x 속도 보너스. 빠른 반응은 최대 2배 보너스.',
+    },
+  },
+  'emoji-count': {
+    en: {
+      title: 'Emoji Count',
+      objective: 'Count how many of a specific emoji appear in the grid.',
+      rules: [
+        'A grid of mixed emojis will appear',
+        'A target emoji is shown with the question "How many?"',
+        'Select the correct count from the options',
+        'Get as many correct as possible within 5 seconds',
+      ],
+      tips: [
+        'Scan the grid systematically (row by row or column by column)',
+        'The target emoji count is between 2 and 6',
+        'Focus only on the target emoji, ignore others',
+        'Practice improves pattern recognition',
+      ],
+      scoring: 'Score = correct answers x speed bonus. This game has higher base points (150) due to difficulty.',
+    },
+    ko: {
+      title: '이모지 카운트',
+      objective: '격자에서 특정 이모지가 몇 개인지 세세요.',
+      rules: [
+        '여러 이모지가 섞인 격자가 나타납니다',
+        '"몇 개?" 질문과 함께 찾아야 할 이모지가 표시됩니다',
+        '보기 중에서 정확한 개수를 선택하세요',
+        '5초 안에 최대한 많이 정답을 맞추세요',
+      ],
+      tips: [
+        '격자를 체계적으로 스캔하세요 (행 또는 열 단위로)',
+        '찾아야 할 이모지 개수는 2~6개입니다',
+        '목표 이모지에만 집중하고 다른 것은 무시하세요',
+        '연습하면 패턴 인식이 향상됩니다',
+      ],
+      scoring: '점수 = 정답 수 x 속도 보너스. 난이도가 높아 기본 점수(150점)가 높습니다.',
+    },
+  },
+  'sequence-memory': {
+    en: {
+      title: 'Sequence Memory',
+      objective: 'Remember and repeat the sequence of colored buttons.',
+      rules: [
+        'Watch as 4-6 colored buttons light up in sequence',
+        'After the sequence is shown, repeat it in the correct order',
+        'You have 5 seconds to input the sequence',
+        'Complete the sequence to advance to the next level',
+      ],
+      tips: [
+        'Focus on the pattern and try to group colors mentally',
+        'Use a memorable phrase or pattern for each color',
+        'Start with smaller sequences to build confidence',
+        'Practice improves short-term memory significantly',
+      ],
+      scoring: 'Score = base points + time bonus + level bonus. Higher levels give more points.',
+    },
+    ko: {
+      title: '순서 기억',
+      objective: '색깔 버튼의 순서를 기억하고 반복하세요.',
+      rules: [
+        '4-6개의 색깔 버튼이 순서대로 켜지는 것을 지켜보세요',
+        '순서가 보여진 후 올바른 순서로 반복하세요',
+        '순서를 입력하는 데 5초가 주어집니다',
+        '순서를 완료하면 다음 레벨로 진행합니다',
+      ],
+      tips: [
+        '패턴에 집중하고 색깔을 머리 속으로 그룹화하세요',
+        '각 색깔에 대해 기억하기 쉬운 문구나 패턴을 사용하세요',
+        '작은 순서부터 시작해 자신감을 쌓으세요',
+        '연습하면 단기 기억력이 크게 향상됩니다',
+      ],
+      scoring: '점수 = 기본 점수 + 시간 보너스 + 레벨 보너스. 높은 레벨은 더 많은 점수.',
+    },
+  },
+  'quick-math': {
+    en: {
+      title: 'Quick Math',
+      objective: 'Solve as many math problems as possible in 5 seconds.',
+      rules: [
+        'Simple math problems appear (addition, subtraction, multiplication)',
+        'Type the answer and press Enter to submit',
+        'Correct answers give points, wrong answers give penalties',
+        'Get as many correct as possible within 5 seconds',
+      ],
+      tips: [
+        'Focus on accuracy over speed at first',
+        'Keep your hands ready on the number keys',
+        'Mental math practice helps improve speed',
+        'Small multiplication tables (2-10) are key',
+      ],
+      scoring: 'Score = (correct x 100) + time bonus - (wrong x 30). Accuracy matters!',
+    },
+    ko: {
+      title: '빠른 암산',
+      objective: '5초 동안 최대한 많은 수학 문제를 풀어보세요.',
+      rules: [
+        '간단한 수학 문제가 나타납니다 (덧셈, 뺄셈, 곱셈)',
+        '답을 입력하고 Enter를 눌러 제출하세요',
+        '정답은 점수를, 오답은 감점을 받습니다',
+        '5초 안에 최대한 많이 정답을 맞추세요',
+      ],
+      tips: [
+        '처음에는 속도보다 정확도에 집중하세요',
+        '숫자 키 위에 손을 준비해 두세요',
+        '암산 연습이 속도 향상에 도움됩니다',
+        '작은 곱셈표(2-10)가 핵심입니다',
+      ],
+      scoring: '점수 = (정답 x 100) + 시간 보너스 - (오답 x 30). 정확도가 중요합니다!',
+    },
+  },
+  'speed-typing': {
+    en: {
+      title: 'Speed Typing',
+      objective: 'Type as many words as possible in 5 seconds.',
+      rules: [
+        'A word appears on screen (Korean or English)',
+        'Type the word exactly as shown',
+        'The next word appears automatically when correct',
+        'Get as many words as possible within 5 seconds',
+      ],
+      tips: [
+        'Look at the word, not your keyboard',
+        'Practice touch typing for faster input',
+        'Stay calm - rushing leads to typos',
+        'Focus on completing words fully before moving on',
+      ],
+      scoring: 'Score = (words x 100) + (characters x 5) + speed bonus.',
+    },
+    ko: {
+      title: '타이핑 챌린지',
+      objective: '5초 동안 최대한 많은 단어를 입력하세요.',
+      rules: [
+        '화면에 단어가 나타납니다 (한국어 또는 영어)',
+        '보이는 대로 정확히 입력하세요',
+        '정확하면 자동으로 다음 단어가 나타납니다',
+        '5초 안에 최대한 많은 단어를 완료하세요',
+      ],
+      tips: [
+        '키보드가 아닌 단어를 보세요',
+        '더 빠른 입력을 위해 터치 타이핑을 연습하세요',
+        '침착하세요 - 서두르면 오타가 납니다',
+        '다음으로 넘어가기 전에 단어를 완전히 완료하는 데 집중하세요',
+      ],
+      scoring: '점수 = (단어 x 100) + (글자 x 5) + 속도 보너스.',
+    },
+  },
+  'color-match': {
+    en: {
+      title: 'Color Match',
+      objective: 'Identify if the text color matches the word meaning (Stroop effect).',
+      rules: [
+        'A color name appears written in a specific color',
+        'Decide if the text COLOR matches the WORD meaning',
+        'Press O (match) or X (no match)',
+        'Get as many correct as possible within 5 seconds',
+      ],
+      tips: [
+        'Focus on the color you SEE, not the word you read',
+        'Use keyboard shortcuts (arrow keys or A/D) for speed',
+        'Build a streak for bonus points',
+        'This is the famous Stroop effect - it is tricky by design!',
+      ],
+      scoring: 'Score = (correct x 100) + (best streak x 50) - (wrong x 30).',
+    },
+    ko: {
+      title: '색상 판별',
+      objective: '글자색이 단어의 의미와 일치하는지 판별하세요 (스트룹 효과).',
+      rules: [
+        '특정 색으로 쓰인 색깔 이름이 나타납니다',
+        '글자의 색상이 단어의 의미와 일치하는지 판단하세요',
+        'O (일치) 또는 X (불일치)를 누르세요',
+        '5초 안에 최대한 많이 정답을 맞추세요',
+      ],
+      tips: [
+        '읽는 단어가 아닌 보이는 색에 집중하세요',
+        '속도를 위해 키보드 단축키 (방향키 또는 A/D)를 사용하세요',
+        '연속 정답으로 보너스 점수를 얻으세요',
+        '이것은 유명한 스트룹 효과입니다 - 원래 어렵게 설계되었습니다!',
+      ],
+      scoring: '점수 = (정답 x 100) + (최고 연속 x 50) - (오답 x 30).',
+    },
+  },
 }
 
 export function getHelp(gameId: string, language: Language = 'en'): GameHelp {

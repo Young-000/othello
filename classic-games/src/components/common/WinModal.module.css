@@ -156,16 +156,43 @@
   margin: 0 0 24px 0;
 }
 
+.buttonGroup {
+  display: flex;
+  gap: 12px;
+}
+
+.shareButton {
+  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+  color: white;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  flex: 1;
+  min-width: 100px;
+}
+
+.shareButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(78, 205, 196, 0.4);
+}
+
+.shareButton:active {
+  transform: translateY(0);
+}
+
 .playAgainButton {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 14px 32px;
+  padding: 14px 24px;
   border-radius: 10px;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s;
-  width: 100%;
+  flex: 2;
 }
 
 .playAgainButton:hover {
@@ -188,5 +215,16 @@
 
   .saveButton {
     width: 100%;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .shareButton,
+  .playAgainButton {
+    width: 100%;
+    flex: unset;
   }
 }
