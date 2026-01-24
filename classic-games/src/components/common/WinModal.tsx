@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { saveRanking, calculateScore, isTopScore, saveToGlobalRanking } from '../../services/rankingService'
 import { shareScore, getGameDisplayName, ShareResult } from '../../services/shareService'
 import { RANKING_CONSTRAINTS } from '../../domain/ranking/types'
@@ -27,6 +28,7 @@ export default function WinModal({
   customTitle,
   customMessage,
 }: WinModalProps) {
+  const navigate = useNavigate()
   const [playerName, setPlayerName] = useState(() => {
     try {
       return localStorage.getItem(PLAYER_NAME_KEY) || ''
@@ -161,6 +163,9 @@ export default function WinModal({
             {shareStatus === 'shared' && '공유됨!'}
             {shareStatus === 'error' && '실패'}
             {shareStatus === 'idle' && '공유하기'}
+          </button>
+          <button className={styles.homeButton} onClick={() => navigate('/')}>
+            홈으로
           </button>
           <button className={styles.playAgainButton} onClick={onPlayAgain}>
             다시 하기

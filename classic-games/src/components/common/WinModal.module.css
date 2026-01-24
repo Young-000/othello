@@ -183,6 +183,24 @@
   transform: translateY(0);
 }
 
+.homeButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  flex: 1;
+}
+
+.homeButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
 .playAgainButton {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
@@ -192,7 +210,7 @@
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s;
-  flex: 2;
+  flex: 1.5;
 }
 
 .playAgainButton:hover {
@@ -223,6 +241,7 @@
   }
 
   .shareButton,
+  .homeButton,
   .playAgainButton {
     width: 100%;
     flex: unset;
