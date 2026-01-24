@@ -166,10 +166,19 @@ export function calculateScore(
       const timeBonus = Math.max(0, 120 - timeInSeconds)
       return Math.max(0, baseScore - movePenalty + timeBonus)
     }
-    // Mini-games: score is calculated in their domain logic, passed via extra.gameScore
+    // Mini-games: score is calculated in their domain logic, passed via moves parameter
+    // 5-second challenge games pass correctCount/clicks as moves
     case 'button-masher':
     case 'timer-challenge':
-    case 'reaction-test': {
+    case 'reaction-test':
+    case 'sequence-memory':
+    case 'quick-math':
+    case 'speed-typing':
+    case 'color-match':
+    case 'arrow-keys':
+    case 'odd-even':
+    case 'number-compare':
+    case 'emoji-count': {
       // Mini-games pass their pre-calculated score via moves parameter
       return moves
     }

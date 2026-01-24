@@ -21,6 +21,7 @@ const BASE_URL = 'https://classic-games-kappa.vercel.app';
 
 // Game ID to display name mapping (Korean)
 const GAME_NAMES: Record<string, string> = {
+  // 클래식 게임
   klondike: '클론다이크 솔리테어',
   freecell: '프리셀',
   spider: '스파이더 솔리테어',
@@ -29,9 +30,18 @@ const GAME_NAMES: Record<string, string> = {
   sudoku: '스도쿠',
   minesweeper: '지뢰찾기',
   memory: '메모리 매치',
-  'button-masher': '버튼 매셔',
-  'timer-challenge': '타이머 챌린지',
-  'reaction-test': '반응 테스트',
+  // 5초 미니게임
+  'button-masher': '버튼 연타',
+  'timer-challenge': '5초 맞추기',
+  'reaction-test': '반응속도 테스트',
+  'sequence-memory': '순서 기억',
+  'quick-math': '빠른 암산',
+  'speed-typing': '타이핑 챌린지',
+  'color-match': '색상 판별',
+  'arrow-keys': '방향 반응',
+  'odd-even': '홀짝 판단',
+  'number-compare': '크기 비교',
+  'emoji-count': '이모지 카운트',
 };
 
 /**

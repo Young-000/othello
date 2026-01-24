@@ -10,6 +10,7 @@ interface GameInfo {
 }
 
 const GAMES: GameInfo[] = [
+  // 클래식 게임
   { id: 'klondike', name: '클론다이크', icon: '🃏' },
   { id: 'freecell', name: '프리셀', icon: '🎴' },
   { id: 'spider', name: '스파이더', icon: '🕷️' },
@@ -18,6 +19,18 @@ const GAMES: GameInfo[] = [
   { id: 'sudoku', name: '스도쿠', icon: '9️⃣' },
   { id: 'minesweeper', name: '지뢰찾기', icon: '💣' },
   { id: 'memory', name: '메모리', icon: '🧠' },
+  // 5초 미니게임
+  { id: 'button-masher', name: '버튼 연타', icon: '👆' },
+  { id: 'timer-challenge', name: '5초 맞추기', icon: '⏱️' },
+  { id: 'reaction-test', name: '반응속도', icon: '⚡' },
+  { id: 'sequence-memory', name: '순서 기억', icon: '🧩' },
+  { id: 'quick-math', name: '빠른 암산', icon: '🔢' },
+  { id: 'speed-typing', name: '타이핑', icon: '⌨️' },
+  { id: 'color-match', name: '색상 판별', icon: '🎨' },
+  { id: 'arrow-keys', name: '방향 반응', icon: '⬆️' },
+  { id: 'odd-even', name: '홀짝 판단', icon: '🔣' },
+  { id: 'number-compare', name: '크기 비교', icon: '⚖️' },
+  { id: 'emoji-count', name: '이모지 카운트', icon: '🔍' },
 ]
 
 interface PlayerStats {
