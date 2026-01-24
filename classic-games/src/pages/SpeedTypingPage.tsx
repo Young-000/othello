@@ -54,6 +54,19 @@ export default function SpeedTypingPage() {
     setState(prev => updateInput(prev, e.target.value))
   }, [state.isRunning])
 
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!state.isRunning) return
+
+    // Enter 또는 Space로 단어 제출
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      const trimmedInput = state.currentInput.trim()
+      if (trimmedInput === state.currentWord) {
+        setState(prev => updateInput(prev, prev.currentWord))
+      }
+    }
+  }, [state.isRunning, state.currentInput, state.currentWord])
+
   const handleNewGame = useCallback(() => {
     setState(resetGame())
   }, [])
@@ -116,6 +129,7 @@ export default function SpeedTypingPage() {
               type="text"
               value={state.currentInput}
               onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
               className={`${styles.typingInput} ${!isCorrectSoFar ? styles.error : ''}`}
               placeholder="여기에 입력..."
               autoComplete="off"
@@ -123,7 +137,7 @@ export default function SpeedTypingPage() {
               autoCorrect="off"
               spellCheck={false}
             />
-            <p className={styles.hint}>정확히 입력하면 자동으로 다음 단어!</p>
+            <p className={styles.hint}>Enter 또는 Space로 제출!</p>
           </div>
         )}
 
