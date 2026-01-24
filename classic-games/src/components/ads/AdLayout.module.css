@@ -1,0 +1,104 @@
+.adLayout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 상단 광고 */
+.topAd {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* 메인 콘텐츠 영역 (사이드 광고 포함) */
+.mainContent {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+/* 중앙 콘텐츠 */
+.content {
+  flex: 1;
+  max-width: 900px;
+  min-width: 0;
+}
+
+/* 사이드 광고 */
+.sideAd {
+  flex-shrink: 0;
+  width: 160px;
+  display: none; /* 기본적으로 숨김, 넓은 화면에서만 표시 */
+}
+
+.stickyAd {
+  position: sticky;
+  top: 20px;
+}
+
+/* 하단 광고 */
+.bottomAd {
+  display: flex;
+  justify-content: center;
+  padding: 24px 16px;
+  margin-top: auto;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* 배너 래퍼 (인라인 사용) */
+.bannerWrapper {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+}
+
+/* 결과 광고 래퍼 */
+.resultAdWrapper {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  margin-top: 16px;
+}
+
+/* 넓은 화면에서 사이드 광고 표시 */
+@media (min-width: 1400px) {
+  .sideAd {
+    display: block;
+  }
+
+  .mainContent {
+    padding: 0 40px;
+  }
+}
+
+/* 중간 화면 */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .sideAd {
+    display: block;
+    width: 120px;
+  }
+
+  .sideAd .stickyAd > div {
+    width: 120px !important;
+    height: 500px !important;
+  }
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 0 12px;
+  }
+
+  .bottomAd {
+    padding: 16px 12px;
+  }
+
+  .topAd {
+    padding: 12px;
+  }
+}

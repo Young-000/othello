@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import DailyChallengeCard from '../components/common/DailyChallengeCard';
+import { BannerAd } from '../components/ads';
 import styles from './HomePage.module.css';
 
 export default function HomePage() {
@@ -12,6 +13,9 @@ export default function HomePage() {
           🏅 글로벌 랭킹
         </Link>
       </header>
+
+      {/* 상단 광고 */}
+      <BannerAd testMode={true} />
 
       <main className={styles.main}>
         <DailyChallengeCard />
@@ -48,6 +52,9 @@ export default function HomePage() {
           </Link>
         </div>
       </main>
+
+      {/* 하단 광고 */}
+      <BannerAd testMode={true} />
     </div>
   );
 }

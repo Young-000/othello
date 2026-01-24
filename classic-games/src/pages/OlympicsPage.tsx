@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getAllGlobalRankings, GlobalRankingEntry, formatTime } from '../services/rankingService'
+import { BannerAd } from '../components/ads'
 import styles from './OlympicsPage.module.css'
 
 interface GameInfo {
@@ -225,6 +226,9 @@ export default function OlympicsPage() {
                 </div>
               )}
             </section>
+
+            {/* 광고 */}
+            <BannerAd testMode={true} />
 
             {/* Statistics Summary */}
             {rankings.length > 0 && (
