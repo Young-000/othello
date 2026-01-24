@@ -25,7 +25,7 @@ export default function HomePage() {
               <h2 className={styles.hubTitle}>5초 미니게임</h2>
               <p className={styles.hubDesc}>짧고 강렬한 도전!</p>
               <div className={styles.hubMeta}>
-                <span className={styles.gameCount}>3개 게임</span>
+                <span className={styles.gameCount}>11개 게임</span>
                 <span className={styles.hubArrow}>→</span>
               </div>
             </div>
