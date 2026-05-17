@@ -12,7 +12,9 @@
     "test:coverage": "vitest run --coverage",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "build:ait": "npm run build && npx ait build"
   },
   "keywords": [
     "games",
@@ -22,7 +24,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@apps-in-toss/web-framework": "^1.7.1",
+    "@apps-in-toss/web-framework": "2.5.1",
     "@supabase/supabase-js": "^2.90.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
