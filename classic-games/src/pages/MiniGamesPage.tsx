@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { BannerAd } from '../components/ads';
 import styles from './MiniGamesPage.module.css';
 
 interface MiniGameInfo {
@@ -140,6 +141,9 @@ export default function MiniGamesPage() {
             </Link>
           ))}
         </div>
+
+        {/* 게임 목록 하단 광고 */}
+        <BannerAd testMode={true} />
 
         <section className={styles.comingSoonSection}>
           <h2 className={styles.sectionTitle}>🚀 Coming Soon</h2>

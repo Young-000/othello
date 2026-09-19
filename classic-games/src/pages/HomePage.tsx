@@ -1,8 +1,45 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import DailyChallengeCard from '../components/common/DailyChallengeCard';
+import { BannerAd } from '../components/ads';
+import { hasConsented, saveConsent, LEGAL_URLS } from '../infrastructure/consent';
 import styles from './HomePage.module.css';
 
 export default function HomePage() {
+  const [consentAccepted, setConsentAccepted] = useState<boolean>(() => hasConsented());
+
+  if (!consentAccepted) {
+    return (
+      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 24, gap: 16, background: '#0F172A', color: '#E2E8F0' }}>
+        <div style={{ fontSize: 48 }}>🎮</div>
+        <h1 style={{ fontSize: 24, margin: 0 }}>클래식 게임</h1>
+        <p style={{ fontSize: 14, color: '#94A3B8', textAlign: 'center', maxWidth: 320 }}>
+          9종 클래식 게임과 11종 미니게임. 글로벌 랭킹과 도전과제까지.
+        </p>
+        <label style={{ display: 'flex', alignItems: 'flex-start', gap: 8, fontSize: 13, color: '#CBD5E1', maxWidth: 320 }}>
+          <input
+            type="checkbox"
+            onChange={(e) => { if (e.target.checked) { saveConsent(); setConsentAccepted(true); } }}
+            aria-label="약관 동의"
+          />
+          <span>
+            <a href={LEGAL_URLS.terms} target="_blank" rel="noreferrer" style={{ color: '#60A5FA' }}>이용약관</a>
+            {' 및 '}
+            <a href={LEGAL_URLS.privacy} target="_blank" rel="noreferrer" style={{ color: '#60A5FA' }}>개인정보처리방침</a>
+            에 동의해요
+          </span>
+        </label>
+        <button
+          type="button"
+          onClick={() => { saveConsent(); setConsentAccepted(true); }}
+          style={{ background: '#3B82F6', color: '#fff', border: 'none', borderRadius: 12, padding: '12px 36px', fontSize: 16, fontWeight: 'bold', cursor: 'pointer' }}
+        >
+          시작하기
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -12,6 +49,9 @@ export default function HomePage() {
           🏅 글로벌 랭킹
         </Link>
       </header>
+
+      {/* 상단 광고 */}
+      <BannerAd testMode={true} />
 
       <main className={styles.main}>
         <DailyChallengeCard />
@@ -48,6 +88,9 @@ export default function HomePage() {
           </Link>
         </div>
       </main>
+
+      {/* 하단 광고 */}
+      <BannerAd testMode={true} />
     </div>
   );
 }
