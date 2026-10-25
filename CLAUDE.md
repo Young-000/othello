@@ -105,3 +105,8 @@ CREATE TABLE classic_games.rankings (
 ---
 
 *이 프로젝트는 글로벌 규칙 `/CLAUDE.md` 및 `/SUPABASE_RULES.md`를 따릅니다.*
+
+## 분석 (Amplitude)
+
+- `classic-games/src/infrastructure/analytics/` — `VITE_AMPLITUDE_API_KEY` 빌드 시 주입, 키 없으면 전송 없음 (봇·webdriver 제외)
+- 이벤트: game_played, game_won, ranking_saved, score_shared (닉네임·점수 원본은 보내지 않는다). DB 코드(`classic_games` 공유 스키마) 변경 없음

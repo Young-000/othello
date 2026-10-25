@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { saveRanking, calculateScore, isTopScore, saveToGlobalRanking } from '../../services/rankingService'
 import { shareScore, getGameDisplayName, ShareResult } from '../../services/shareService'
 import { RANKING_CONSTRAINTS } from '../../domain/ranking/types'
+import { trackAmplitude } from '../../infrastructure/analytics/amplitude'
 import styles from './WinModal.module.css'
 
 const PLAYER_NAME_KEY = 'classic-games-player-name'
@@ -77,6 +78,7 @@ export default function WinModal({
       // Continue - local save succeeded
     }
 
+    trackAmplitude('ranking_saved', { game_id: gameId })
     setSaved(true)
   }
 
@@ -96,6 +98,7 @@ export default function WinModal({
     })
 
     if (result.success) {
+      trackAmplitude('score_shared', { game_id: gameId })
       setShareStatus(result.method === 'clipboard' ? 'copied' : 'shared')
       // Reset status after 2 seconds
       setTimeout(() => setShareStatus('idle'), 2000)

@@ -15,6 +15,7 @@ import {
   getAllAchievementsWithStatus,
 } from '../services/achievementService';
 import { AchievementNotificationContainer } from '../components/common/AchievementNotification';
+import { trackAmplitude } from '../infrastructure/analytics/amplitude';
 
 interface AchievementContextValue {
   /** Trigger an achievement event and check for unlocks */
@@ -128,6 +129,7 @@ export function useAchievementTrigger() {
     /** Called when a player wins a game */
     onGameWin: useCallback(
       (gameId: string, score?: number) => {
+        trackAmplitude('game_won', { game_id: gameId });
         triggerEvent({ type: 'game_win', gameId, score });
         if (score !== undefined) {
           triggerEvent({ type: 'score_earned', gameId, score });
@@ -139,6 +141,7 @@ export function useAchievementTrigger() {
     /** Called when a player plays a game (even without winning) */
     onGamePlayed: useCallback(
       (gameId: string) => {
+        trackAmplitude('game_played', { game_id: gameId });
         triggerEvent({ type: 'game_played', gameId });
       },
       [triggerEvent]
