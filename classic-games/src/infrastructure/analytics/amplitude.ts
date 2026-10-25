@@ -21,6 +21,7 @@ const BOT_TOKENS = [
   'lighthouse',
 ];
 
+const STORAGE_PREFIX = 'AMP_';
 const EARLY_SCRUB_PLUGIN = 'url-scrub';
 const LAST_SCRUB_PLUGIN = 'url-scrub-last';
 const URL_CHECK_INTERVAL_MS = 250;
@@ -59,6 +60,12 @@ async function startSdk(apiKey: string): Promise<AmplitudeSdkModule> {
   // init 전에 add 하면 SDK가 큐에 쌓았다가 기본 플러그인보다 먼저 등록한다 → 첫 페이지뷰도 정리된다.
   sdk.add(createUrlScrubPlugin(EARLY_SCRUB_PLUGIN));
   await sdk.init(apiKey, undefined, {
+    // 대시보드의 원격 설정이 element-click autocapture 를 켜지 못하게 한다 (방문자 이름 등 화면 텍스트 수집).
+    remoteConfig: { fetchRemoteConfig: false },
+    // IP 주소를 Amplitude 에 보내지 않는다 (ip 필드 자체를 싣지 않는다).
+    trackingOptions: { ipAddress: false },
+    // 기기 ID를 쿠키 대신 localStorage(`AMP_*`)에 둔다. 연결 해제 때 prefix 로 지울 수 있다.
+    identityStorage: 'localStorage',
     autocapture: {
       pageViews: { trackHistoryChanges: 'all', trackOn: () => !hasAuthCredentialsInUrl() },
       sessions: true,
@@ -105,4 +112,20 @@ export function initAmplitude(): void {
 export function trackAmplitude(eventName: string, properties?: EventProperties): void {
   if (!sdkPromise) return;
   void sdkPromise.then((sdk) => sdk?.track(eventName, properties));
+}
+
+/**
+ * 연결 해제(UNLINK) 때 브라우저에 남은 Amplitude 기기 ID·세션·대기 이벤트(`AMP_*`)를 지운다.
+ * SDK가 이미 떠 있으면 새 기기 ID를 발급해 예전 ID가 다시 저장되지 않게 한다.
+ */
+export function clearAmplitudeData(): void {
+  try {
+    const keys = Array.from({ length: localStorage.length }, (_, index) => localStorage.key(index));
+    keys
+      .filter((key): key is string => key !== null && key.startsWith(STORAGE_PREFIX))
+      .forEach((key) => localStorage.removeItem(key));
+  } catch {
+    // localStorage 접근 실패
+  }
+  if (sdkPromise) void sdkPromise.then((sdk) => sdk?.reset());
 }

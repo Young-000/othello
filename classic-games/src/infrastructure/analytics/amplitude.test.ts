@@ -8,6 +8,7 @@ const sdk = vi.hoisted(() => ({
   track: vi.fn(),
   add: vi.fn(),
   remove: vi.fn(),
+  reset: vi.fn(),
 }));
 vi.mock('@amplitude/analytics-browser', () => sdk);
 
@@ -20,6 +21,25 @@ type InitOptions = {
 async function loadModule(): Promise<typeof AmplitudeModule> {
   vi.resetModules();
   return import('./amplitude');
+}
+
+/** 테스트 setup 이 localStorage 를 key()/length 없는 목으로 바꾸는 저장소가 있어, 표준 Storage 형태를 직접 만든다. */
+function createStorage(): typeof window.localStorage {
+  const entries = new Map<string, string>();
+  return {
+    get length(): number {
+      return entries.size;
+    },
+    key: (index: number): string | null => [...entries.keys()][index] ?? null,
+    getItem: (key: string): string | null => entries.get(key) ?? null,
+    setItem: (key: string, value: string): void => {
+      entries.set(key, String(value));
+    },
+    removeItem: (key: string): void => {
+      entries.delete(key);
+    },
+    clear: (): void => entries.clear(),
+  };
 }
 
 function setWebdriver(value: boolean): void {
@@ -39,6 +59,7 @@ describe('amplitude', () => {
 
   afterEach(() => {
     vi.unstubAllEnvs();
+    vi.unstubAllGlobals();
     vi.useRealTimers();
   });
 
@@ -149,5 +170,49 @@ describe('amplitude', () => {
     await vi.waitFor(() =>
       expect(sdk.track).toHaveBeenCalledWith('game_started', { game_id: 'timer' }),
     );
+  });
+
+  it('원격 설정·IP 수집을 끄고 기기 ID는 localStorage 에 저장한다', async () => {
+    vi.stubEnv('VITE_AMPLITUDE_API_KEY', TEST_KEY);
+    const { initAmplitude } = await loadModule();
+
+    initAmplitude();
+    await vi.waitFor(() => expect(sdk.init).toHaveBeenCalledTimes(1));
+
+    const [, , options] = sdk.init.mock.calls[0] as unknown as [string, unknown, Record<string, unknown>];
+    expect(options).toMatchObject({
+      remoteConfig: { fetchRemoteConfig: false },
+      trackingOptions: { ipAddress: false },
+      identityStorage: 'localStorage',
+    });
+  });
+
+  it('clearAmplitudeData 는 AMP_ 키만 지우고 SDK 가 떠 있으면 기기 ID를 새로 받는다', async () => {
+    vi.stubEnv('VITE_AMPLITUDE_API_KEY', TEST_KEY);
+    vi.stubGlobal('localStorage', createStorage());
+    window.localStorage.setItem('AMP_abcdef1234', '{"deviceId":"old"}');
+    window.localStorage.setItem('AMP_unsent_abcdef1234', '[]');
+    window.localStorage.setItem('app-keep-me', 'x');
+    const { initAmplitude, clearAmplitudeData } = await loadModule();
+
+    initAmplitude();
+    await vi.waitFor(() => expect(sdk.remove).toHaveBeenCalledWith('url-scrub'));
+    clearAmplitudeData();
+
+    expect(window.localStorage.getItem('AMP_abcdef1234')).toBeNull();
+    expect(window.localStorage.getItem('AMP_unsent_abcdef1234')).toBeNull();
+    expect(window.localStorage.getItem('app-keep-me')).toBe('x');
+    await vi.waitFor(() => expect(sdk.reset).toHaveBeenCalledTimes(1));
+  });
+
+  it('clearAmplitudeData 는 SDK 를 올리기 전에도 안전하다', async () => {
+    vi.stubGlobal('localStorage', createStorage());
+    window.localStorage.setItem('AMP_abcdef1234', '{}');
+    const { clearAmplitudeData } = await loadModule();
+
+    clearAmplitudeData();
+
+    expect(window.localStorage.getItem('AMP_abcdef1234')).toBeNull();
+    expect(sdk.reset).not.toHaveBeenCalled();
   });
 });
