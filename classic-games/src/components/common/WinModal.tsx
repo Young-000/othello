@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { saveRanking, calculateScore, isTopScore, saveToGlobalRanking } from '../../services/rankingService'
 import { shareScore, getGameDisplayName, ShareResult } from '../../services/shareService'
@@ -38,6 +38,14 @@ export default function WinModal({
     }
   })
   const [saved, setSaved] = useState(false)
+  const hasTrackedWinRef = useRef(false)
+
+  // 모달은 게임이 끝날 때만 열린다. StrictMode 의 이펙트 재실행으로 두 번 보내지 않는다.
+  useEffect(() => {
+    if (hasTrackedWinRef.current) return
+    hasTrackedWinRef.current = true
+    trackAmplitude('game_won', { game_id: gameId })
+  }, [gameId])
   const [shareStatus, setShareStatus] = useState<'idle' | 'copied' | 'shared' | 'error'>('idle')
 
   const score = extra?.gameScore ?? calculateScore(gameId, moves, timeInSeconds, true, extra)

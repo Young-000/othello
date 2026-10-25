@@ -13,6 +13,7 @@ import { useGameTimer } from '../hooks/useGameTimer'
 import PlayingCard from '../components/common/PlayingCard'
 import CardPlaceholder from '../components/common/CardPlaceholder'
 import WinModal from '../components/common/WinModal'
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed'
 import styles from './FreecellPage.module.css'
 
 type Selection =
@@ -24,6 +25,7 @@ export default function FreecellPage() {
   const [state, setState] = useState<FreecellState>(() => createFreecellGame())
   const [selection, setSelection] = useState<Selection>(null)
   const { formattedTime, seconds, reset } = useGameTimer(!state.isWon)
+  useTrackGamePlayed('freecell', !state.isWon)
 
   const handleNewGame = () => {
     setState(createFreecellGame())

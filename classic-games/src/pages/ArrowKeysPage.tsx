@@ -16,10 +16,12 @@ import {
 } from '../domain/game/minigames/ArrowKeys';
 import { useBestScore } from '../hooks/useBestScore';
 import WinModal from '../components/common/WinModal';
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed';
 import styles from './ArrowKeysPage.module.css';
 
 export default function ArrowKeysPage() {
   const [state, setState] = useState<ArrowKeysState>(createArrowKeys);
+  useTrackGamePlayed('arrow-keys', state.isRunning);
   const { bestScore, updateBestScore } = useBestScore('arrow-keys');
 
   useEffect(() => {

@@ -5,6 +5,7 @@ import { useSavedGame } from '../hooks/useLocalStorage'
 import { useBestScore } from '../hooks/useBestScore'
 import { useGameTimer } from '../hooks/useGameTimer'
 import WinModal from '../components/common/WinModal'
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed'
 import styles from './Game2048Page.module.css'
 
 const TILE_COLORS: Record<number, { bg: string; text: string }> = {
@@ -25,6 +26,7 @@ export default function Game2048Page() {
   const { state, setState, newGame } = useSavedGame('2048', createGame2048)
   const { bestScore, updateBestScore } = useBestScore('2048')
   const { formattedTime, seconds, reset } = useGameTimer(!state.isGameOver && !state.hasWon)
+  useTrackGamePlayed('2048', !state.isGameOver && !state.hasWon)
   const touchStartRef = useRef<{ x: number; y: number } | null>(null)
   const gameRef = useRef<HTMLDivElement>(null)
 

@@ -13,10 +13,12 @@ import {
 } from '../domain/game/minigames/ButtonMasher'
 import { useBestScore } from '../hooks/useBestScore'
 import WinModal from '../components/common/WinModal'
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed'
 import styles from './ButtonMasherPage.module.css'
 
 export default function ButtonMasherPage() {
   const [state, setState] = useState<ButtonMasherState>(createButtonMasher)
+  useTrackGamePlayed('button-masher', state.isRunning)
   const { bestScore, updateBestScore } = useBestScore('button-masher')
 
   useEffect(() => {

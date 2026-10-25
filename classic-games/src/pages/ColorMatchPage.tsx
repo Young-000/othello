@@ -13,10 +13,12 @@ import {
 } from '../domain/game/minigames/ColorMatch'
 import { useBestScore } from '../hooks/useBestScore'
 import WinModal from '../components/common/WinModal'
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed'
 import styles from './ColorMatchPage.module.css'
 
 export default function ColorMatchPage() {
   const [state, setState] = useState<ColorMatchState>(createColorMatch)
+  useTrackGamePlayed('color-match', state.isRunning)
   const { bestScore, updateBestScore } = useBestScore('color-match')
 
   useEffect(() => {

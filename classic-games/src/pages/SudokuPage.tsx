@@ -4,6 +4,7 @@ import { createSudoku, setCell, selectCell, toggleNote, SudokuState, Difficulty 
 import { useGameTimer } from '../hooks/useGameTimer'
 import { useBestScore } from '../hooks/useBestScore'
 import WinModal from '../components/common/WinModal'
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed'
 import styles from './SudokuPage.module.css'
 
 export default function SudokuPage() {
@@ -11,6 +12,7 @@ export default function SudokuPage() {
   const [difficulty, setDifficulty] = useState<Difficulty>('easy')
   const [noteMode, setNoteMode] = useState(false)
   const { formattedTime, seconds, reset } = useGameTimer(!state.isComplete)
+  useTrackGamePlayed('sudoku', !state.isComplete)
   const { bestScore, updateBestScore } = useBestScore(`sudoku-${difficulty}`)
 
   useEffect(() => {

@@ -4,6 +4,7 @@ import { createMemoryGame, flipCard, checkMatch, MemoryGameState } from '../doma
 import { useGameTimer } from '../hooks/useGameTimer'
 import { useBestScore } from '../hooks/useBestScore'
 import WinModal from '../components/common/WinModal'
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed'
 import styles from './MemoryPage.module.css'
 
 type Difficulty = 'easy' | 'medium' | 'hard'
@@ -18,6 +19,7 @@ export default function MemoryPage() {
   const [difficulty, setDifficulty] = useState<Difficulty>('medium')
   const [state, setState] = useState<MemoryGameState>(() => createMemoryGame(DIFFICULTY_CONFIG.medium.pairs))
   const { formattedTime, seconds, reset } = useGameTimer(!state.isComplete)
+  useTrackGamePlayed('memory', !state.isComplete)
   const { bestScore, updateBestScore } = useBestScore(`memory-${difficulty}`)
   const [checking, setChecking] = useState(false)
 

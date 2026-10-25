@@ -15,10 +15,12 @@ import {
 } from '../domain/game/minigames/SpeedTyping'
 import { useBestScore } from '../hooks/useBestScore'
 import WinModal from '../components/common/WinModal'
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed'
 import styles from './SpeedTypingPage.module.css'
 
 export default function SpeedTypingPage() {
   const [state, setState] = useState<SpeedTypingState>(createSpeedTyping)
+  useTrackGamePlayed('speed-typing', state.isRunning)
   const { bestScore, updateBestScore } = useBestScore('speed-typing')
   const inputRef = useRef<HTMLInputElement>(null)
 

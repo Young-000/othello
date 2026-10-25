@@ -14,10 +14,12 @@ import {
   ReactionTestState
 } from '../domain/game/minigames/ReactionTest'
 import { useBestScore } from '../hooks/useBestScore'
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed'
 import styles from './ReactionTestPage.module.css'
 
 export default function ReactionTestPage() {
   const [state, setState] = useState<ReactionTestState>(createReactionTest)
+  useTrackGamePlayed('reaction-test', state.phase === 'ready' || state.phase === 'go')
   const { bestScore, updateBestScore } = useBestScore('reaction-test')
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 

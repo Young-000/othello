@@ -13,10 +13,12 @@ import {
 } from '../domain/game/minigames/TimerChallenge'
 import { useBestScore } from '../hooks/useBestScore'
 import WinModal from '../components/common/WinModal'
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed'
 import styles from './TimerChallengePage.module.css'
 
 export default function TimerChallengePage() {
   const [state, setState] = useState<TimerChallengeState>(() => createTimerChallenge())
+  useTrackGamePlayed('timer-challenge', state.isRunning)
   const { bestScore, updateBestScore } = useBestScore('timer-challenge')
 
   useEffect(() => {

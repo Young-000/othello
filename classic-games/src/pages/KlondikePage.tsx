@@ -4,6 +4,7 @@ import CardPlaceholder from '../components/common/CardPlaceholder'
 import WinModal from '../components/common/WinModal'
 import { useKlondikeGame } from '../hooks/useKlondikeGame'
 import { useGameTimer } from '../hooks/useGameTimer'
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed'
 import styles from './KlondikePage.module.css'
 
 export default function KlondikePage() {
@@ -20,6 +21,7 @@ export default function KlondikePage() {
   } = useKlondikeGame()
 
   const { formattedTime, seconds, reset } = useGameTimer(!state.isWon)
+  useTrackGamePlayed('klondike', !state.isWon)
 
   const handleNewGame = () => {
     newGame()

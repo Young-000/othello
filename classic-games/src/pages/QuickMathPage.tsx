@@ -14,10 +14,12 @@ import {
 } from '../domain/game/minigames/QuickMath'
 import { useBestScore } from '../hooks/useBestScore'
 import WinModal from '../components/common/WinModal'
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed'
 import styles from './QuickMathPage.module.css'
 
 export default function QuickMathPage() {
   const [state, setState] = useState<QuickMathState>(createQuickMath)
+  useTrackGamePlayed('quick-math', state.isRunning)
   const [inputValue, setInputValue] = useState('')
   const { bestScore, updateBestScore } = useBestScore('quick-math')
   const inputRef = useRef<HTMLInputElement>(null)

@@ -20,10 +20,12 @@ import {
 } from '../domain/game/minigames/SequenceMemory'
 import { useBestScore } from '../hooks/useBestScore'
 import WinModal from '../components/common/WinModal'
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed'
 import styles from './SequenceMemoryPage.module.css'
 
 export default function SequenceMemoryPage() {
   const [state, setState] = useState<SequenceMemoryState>(createSequenceMemory)
+  useTrackGamePlayed('sequence-memory', state.phase === 'showing' || state.phase === 'input')
   const { bestScore, updateBestScore } = useBestScore('sequence-memory')
   const showingRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)

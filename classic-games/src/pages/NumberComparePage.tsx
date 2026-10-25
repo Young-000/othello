@@ -16,10 +16,12 @@ import {
 } from '../domain/game/minigames/NumberCompare';
 import { useBestScore } from '../hooks/useBestScore';
 import WinModal from '../components/common/WinModal';
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed';
 import styles from './NumberComparePage.module.css';
 
 export default function NumberComparePage() {
   const [state, setState] = useState<NumberCompareState>(createNumberCompare);
+  useTrackGamePlayed('number-compare', state.isRunning);
   const { bestScore, updateBestScore } = useBestScore('number-compare');
 
   useEffect(() => {

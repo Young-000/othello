@@ -5,6 +5,7 @@ import { useGameTimer } from '../hooks/useGameTimer'
 import PlayingCard from '../components/common/PlayingCard'
 import CardPlaceholder from '../components/common/CardPlaceholder'
 import WinModal from '../components/common/WinModal'
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed'
 import styles from './SpiderPage.module.css'
 
 interface Selection {
@@ -18,6 +19,7 @@ export default function SpiderPage() {
   const [currentSuits, setCurrentSuits] = useState<SpiderSuit>(1)
   const [selection, setSelection] = useState<Selection | null>(null)
   const { formattedTime, seconds, reset } = useGameTimer(!state.isWon)
+  useTrackGamePlayed('spider', !state.isWon)
 
   const handleNewGame = (suits: SpiderSuit = 1) => {
     setState(createSpiderGame(suits))

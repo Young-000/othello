@@ -15,10 +15,12 @@ import {
 } from '../domain/game/minigames/EmojiCount';
 import { useBestScore } from '../hooks/useBestScore';
 import WinModal from '../components/common/WinModal';
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed';
 import styles from './EmojiCountPage.module.css';
 
 export default function EmojiCountPage() {
   const [state, setState] = useState<EmojiCountState>(createEmojiCount);
+  useTrackGamePlayed('emoji-count', state.isRunning);
   const { bestScore, updateBestScore } = useBestScore('emoji-count');
 
   useEffect(() => {

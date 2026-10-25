@@ -4,12 +4,14 @@ import { createMinesweeper, revealCell, toggleFlag, Difficulty } from '../domain
 import { useGameTimer } from '../hooks/useGameTimer'
 import { useBestScore } from '../hooks/useBestScore'
 import WinModal from '../components/common/WinModal'
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed'
 import styles from './MinesweeperPage.module.css'
 
 export default function MinesweeperPage() {
   const [state, setState] = useState(() => createMinesweeper('easy'))
   const [difficulty, setDifficulty] = useState<Difficulty>('easy')
   const { formattedTime, seconds, reset } = useGameTimer(!state.isGameOver && !state.isWon)
+  useTrackGamePlayed('minesweeper', !state.isGameOver && !state.isWon)
   const { bestScore, updateBestScore } = useBestScore(`minesweeper-${difficulty}`)
 
   useEffect(() => {

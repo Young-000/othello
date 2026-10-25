@@ -16,10 +16,12 @@ import {
 } from '../domain/game/minigames/OddEven';
 import { useBestScore } from '../hooks/useBestScore';
 import WinModal from '../components/common/WinModal';
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed';
 import styles from './OddEvenPage.module.css';
 
 export default function OddEvenPage() {
   const [state, setState] = useState<OddEvenState>(createOddEven);
+  useTrackGamePlayed('odd-even', state.isRunning);
   const { bestScore, updateBestScore } = useBestScore('odd-even');
 
   useEffect(() => {

@@ -17,6 +17,7 @@ import { useGameTimer } from '../hooks/useGameTimer'
 import PlayingCard from '../components/common/PlayingCard'
 import CardPlaceholder from '../components/common/CardPlaceholder'
 import WinModal from '../components/common/WinModal'
+import { useTrackGamePlayed } from '../hooks/useTrackGamePlayed'
 import styles from './PyramidPage.module.css'
 
 interface Selection {
@@ -29,6 +30,7 @@ export default function PyramidPage() {
   const [state, setState] = useState<PyramidState>(() => createPyramidGame())
   const [selection, setSelection] = useState<Selection | null>(null)
   const { formattedTime, seconds, reset } = useGameTimer(!state.isWon && !state.isGameOver)
+  useTrackGamePlayed('pyramid', !state.isWon && !state.isGameOver)
 
   // Memoize exposed card positions to avoid duplicate isCardExposed calls
   const exposedCards = useMemo(() => {
